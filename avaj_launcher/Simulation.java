@@ -2,7 +2,7 @@ package avaj_launcher;
 
 import java.io.File;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
+import java.security.*;
 import avaj_launcher.SimulationException;
 import avaj_launcher.aircraft.*;
 
@@ -13,27 +13,31 @@ public class Simulation {
 
 	public static void main(String[] args) throws SimulationException {
 		if (args.length != 1)
-			return ;
+			throw new SimulationException("Wrong input!");
+		if (!args[0].equals("scenario.txt") && !args[0].equals("scenario.md5"))
+			throw new SimulationException("File should be \"scenario.txt\" or \"scenario.md5\"");
+		System.out.println(args[0]);
 		File file = new File(args[0]);
 		try (Scanner sc = new Scanner(file)) {
 			while (sc.hasNext()) {
 				if (size == null)
-					size = Integer.parseInt(sc.nextLine);
+					size = Integer.parseInt(sc.next());
 				else {
 					String type = sc.next().trim();
 					String name = sc.next().trim();
-					int longtitude = Integer.parseInt(sc.next());
-					int latitude = Integer.parseInt(sc.next());
-					int height = Integer.parseInt(sc.next());
-					Flyable aircraft = AircraftFactory.newAircraft(type, name, longtitude, latitude, height);
-					aircraft.registerTower(weatherTower);
+					int longtitude = Integer.parseInt(sc.next().trim());
+					int latitude = Integer.parseInt(sc.next().trim());
+					int height = Integer.parseInt(sc.next().trim());
+					AircraftFactory.newAircraft(type, name, longtitude, latitude, height).registerTower(weatherTower);
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Exception occured while parsing");
+			System.out.println(e.getMessage());
 		} finally {
-			while (size-- > 0)
+			while (size-- > 0) {
+				System.out.println("---------------" + Integer.toString(size) + "------------------");
 				weatherTower.changeWeather();
+			}
 		}
 	}
 }

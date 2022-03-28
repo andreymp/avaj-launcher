@@ -17,22 +17,24 @@ public class JetPlane extends Aircraft implements Flyable {
 		if (weatherTower.getWeather(coordinates) == "SUN") {
 			lat += 10;
 			height += 2;
-		} else if (weatherTower.getWeather(coordinates) == "RAIN")
+			System.out.printf("JetPlane#%s(%d): Flying to Dubai :)\n", this.name, this.id);
+		} else if (weatherTower.getWeather(coordinates) == "RAIN") {
 			lat += 5;
-		else if (weatherTower.getWeather(coordinates) == "FOG")
+			System.out.printf("JetPlane#%s(%d): Too hard to safe coordination...\n", this.name, this.id);
+		} else if (weatherTower.getWeather(coordinates) == "FOG") {
 			lat += 1;
-		else
+			System.out.printf("JetPlane#%s(%d): Damn... My eyes :(\n", this.name, this.id);
+		} else {
 			height -= 7;
-		if (hieght > 100)
-			hieght = 100;
-		if (longt < 0) 
-			longt = 0;
-		if (lat < 0) 
-			lat = 0;
+			System.out.printf("JetPlane#%s(%d): Time for skiing :)\n", this.name, this.id);
+		}
+		if (height > 100) height = 100;
+		if (longt < 0) longt = 0;
+		if (lat < 0) lat = 0;
 		this.coordinates = new Coordinates(longt, lat, height);
 		if (this.coordinates.getHeight() <= 0) {
 			this.weatherTower.unregister(this);
-			System.out.printf("Tower says: JetPlane#%s(%ld) unregistered from weather tower.\n",
+			System.out.printf("Tower says: JetPlane#%s(%d) unregistered from weather tower.\n",
 				this.name, this.id);
 		}
 	}
@@ -41,7 +43,7 @@ public class JetPlane extends Aircraft implements Flyable {
 	public void registerTower(WeatherTower weatherTower) { 
 		this.weatherTower = weatherTower; 
 		this.weatherTower.register(this);
-		System.out.printf("Tower says: JetPlane#%s(%ld) registered to weather tower.\n",
+		System.out.printf("Tower says: JetPlane#%s(%d) registered to weather tower.\n",
 			this.name, this.id);
 	}
 }

@@ -9,7 +9,7 @@ public class Tower {
 	public void register(Flyable fyable) { objects.add(fyable); }
 	public void unregister(Flyable fyable) { objects.remove(fyable); }
 	protected void conditionsChanged() {
-		for (Flyable elem : objects)
-			elem.updateConditions();
+		for (int i = 0; i < objects.size(); ++i)
+			objects.get(i).updateConditions();
 	}
 }
