@@ -1,7 +1,7 @@
 package avaj_launcher.aircraft;
 
 import avaj_launcher.Flyable;
-import avaj_launcher.SimulationException;
+import exceptions.SimulationException;
 import avaj_launcher.Coordinates;
 
 public class AircraftFactory {

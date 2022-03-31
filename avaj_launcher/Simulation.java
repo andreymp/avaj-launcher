@@ -40,7 +40,11 @@ public class Simulation {
 			int longtitude = Integer.parseInt(arr[2]);
 			int latitude = Integer.parseInt(arr[3]);
 			int height = Integer.parseInt(arr[4]);
-			AircraftFactory.newAircraft(type, name, longtitude, latitude, height).registerTower(weatherTower);
+			try {
+				AircraftFactory.newAircraft(type, name, longtitude, latitude, height).registerTower(weatherTower);
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 			if (!hasAircraft) hasAircraft = true;
 		} else
 			throw new SimulationException("Wrong format of lattitude, longtittude or height");
