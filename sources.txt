@@ -12,3 +12,4 @@ avaj_launcher/WeatherProvider.java
 avaj_launcher/WeatherTower.java
 exceptions/MD5Exception.java
 exceptions/SimulationException.java
+util/Writer.java

@@ -3,6 +3,7 @@ package avaj_launcher.aircraft;
 import avaj_launcher.Coordinates;
 import avaj_launcher.Flyable;
 import avaj_launcher.WeatherTower;
+import util.Writer;
 
 public class JetPlane extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
@@ -17,16 +18,16 @@ public class JetPlane extends Aircraft implements Flyable {
 		if (weatherTower.getWeather(coordinates) == "SUN") {
 			lat += 10;
 			height += 2;
-			System.out.printf("JetPlane#%s(%d): Flying to Dubai :)\n", this.name, this.id);
+			Writer.write(String.format("JetPlane#%s(%d): Flying to Dubai :)\n", this.name, this.id));
 		} else if (weatherTower.getWeather(coordinates) == "RAIN") {
 			lat += 5;
-			System.out.printf("JetPlane#%s(%d): Too hard to safe coordination...\n", this.name, this.id);
+			Writer.write(String.format("JetPlane#%s(%d): Too hard to safe coordination...\n", this.name, this.id));
 		} else if (weatherTower.getWeather(coordinates) == "FOG") {
 			lat += 1;
-			System.out.printf("JetPlane#%s(%d): Damn... My eyes :(\n", this.name, this.id);
+			Writer.write(String.format("JetPlane#%s(%d): Damn... My eyes :(\n", this.name, this.id));
 		} else {
 			height -= 7;
-			System.out.printf("JetPlane#%s(%d): Time for skiing :)\n", this.name, this.id);
+			Writer.write(String.format("JetPlane#%s(%d): Time for skiing :)\n", this.name, this.id));
 		}
 		if (height > 100) height = 100;
 		if (longt < 0) longt = 0;
@@ -34,8 +35,8 @@ public class JetPlane extends Aircraft implements Flyable {
 		this.coordinates = new Coordinates(longt, lat, height);
 		if (this.coordinates.getHeight() <= 0) {
 			this.weatherTower.unregister(this);
-			System.out.printf("Tower says: JetPlane#%s(%d) unregistered from weather tower.\n",
-				this.name, this.id);
+			Writer.write(String.format("Tower says: JetPlane#%s(%d) unregistered from weather tower.\n",
+				this.name, this.id));
 		}
 	}
 
@@ -43,7 +44,7 @@ public class JetPlane extends Aircraft implements Flyable {
 	public void registerTower(WeatherTower weatherTower) { 
 		this.weatherTower = weatherTower; 
 		this.weatherTower.register(this);
-		System.out.printf("Tower says: JetPlane#%s(%d) registered to weather tower.\n",
-			this.name, this.id);
+		Writer.write(String.format("Tower says: JetPlane#%s(%d) registered to weather tower.\n",
+			this.name, this.id));
 	}
 }

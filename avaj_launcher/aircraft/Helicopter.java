@@ -3,6 +3,7 @@ package avaj_launcher.aircraft;
 import avaj_launcher.Coordinates;
 import avaj_launcher.Flyable;
 import avaj_launcher.WeatherTower;
+import util.Writer;
 
 public class Helicopter extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
@@ -17,16 +18,16 @@ public class Helicopter extends Aircraft implements Flyable {
 		if (weatherTower.getWeather(coordinates) == "SUN") {
 			longt += 10;
 			height += 2;
-			System.out.printf("Helicoter#%s(%d): Nice weather to fly around :)\n", this.name, this.id);
+			Writer.write(String.format("Helicoter#%s(%d): Nice weather to fly around :)\n", this.name, this.id));
 		} else if (weatherTower.getWeather(coordinates) == "RAIN") {
 			longt += 5;
-			System.out.printf("Helicoter#%s(%d): So cute weather for romatic <3\n", this.name, this.id);
+			Writer.write(String.format("Helicoter#%s(%d): So cute weather for romatic <3\n", this.name, this.id));
 		} else if (weatherTower.getWeather(coordinates) == "FOG") {
 			longt += 1;
-			System.out.printf("Helicoter#%s(%d): This is to much for my visibility...\n", this.name, this.id);
+			Writer.write(String.format("Helicoter#%s(%d): This is to much for my visibility...\n", this.name, this.id));
 		} else {
 			height -= 12;
-			System.out.printf("Helicoter#%s(%d): Merry Christmas?\n", this.name, this.id);
+			Writer.write(String.format("Helicoter#%s(%d): Merry Christmas?\n", this.name, this.id));
 		}
 		if (height > 100) height = 100;
 		if (longt < 0) longt = 0;
@@ -34,8 +35,8 @@ public class Helicopter extends Aircraft implements Flyable {
 		this.coordinates = new Coordinates(longt, lat, height);
 		if (this.coordinates.getHeight() <= 0) {
 			this.weatherTower.unregister(this);
-			System.out.printf("Tower says:  Helicopter#%s(%d) unregistered from weather tower.\n",
-				this.name, this.id);
+			Writer.write(String.format("Tower says:  Helicopter#%s(%d) unregistered from weather tower.\n",
+				this.name, this.id));
 		}
 	}
 
@@ -43,7 +44,7 @@ public class Helicopter extends Aircraft implements Flyable {
 	public void registerTower(WeatherTower weatherTower) { 
 		this.weatherTower = weatherTower; 
 		this.weatherTower.register(this);
-		System.out.printf("Tower says: Helicopter#%s(%d) registered to weather tower.\n",
-			this.name, this.id);
+		Writer.write(String.format("Tower says: Helicopter#%s(%d) registered to weather tower.\n",
+			this.name, this.id));
 	}
 }

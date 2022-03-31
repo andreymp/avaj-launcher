@@ -1,6 +1,7 @@
 package avaj_launcher.aircraft;
 
 import avaj_launcher.Coordinates;
+import java.io.FileWriter;
 
 public class Aircraft {
 	protected long id;

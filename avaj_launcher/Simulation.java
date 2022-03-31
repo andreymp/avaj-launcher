@@ -1,10 +1,10 @@
 package avaj_launcher;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 import exceptions.*;
 import avaj_launcher.aircraft.*;
+import util.Writer;
 
 public class Simulation {
 
@@ -75,9 +75,10 @@ public class Simulation {
 			readFile(args[0]);
 			if (size != null && hasAircraft) {
 				for (int i = 1; size > 0; --size, ++i) {
-					System.out.println("---------------Iteration: " + Integer.toString(i) + "------------------");
+					Writer.write("---------------Iteration: " + Integer.toString(i) + "------------------\n");
 					weatherTower.changeWeather();
 				}
+				Writer.close();
 			}
 		}
 		catch(SimulationException | MD5Exception e) {
