@@ -1,4 +1,4 @@
-package avaj_launcher;
+package exceptions;
 
 public class SimulationException extends Exception {
 	public SimulationException() { super(); }

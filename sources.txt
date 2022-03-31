@@ -5,8 +5,10 @@ avaj_launcher/aircraft/Helicopter.java
 avaj_launcher/aircraft/JetPlane.java
 avaj_launcher/Coordinates.java
 avaj_launcher/Flyable.java
+avaj_launcher/MD5.java
 avaj_launcher/Simulation.java
-avaj_launcher/SimulationException.java
 avaj_launcher/Tower.java
 avaj_launcher/WeatherProvider.java
 avaj_launcher/WeatherTower.java
+exceptions/MD5Exception.java
+exceptions/SimulationException.java
